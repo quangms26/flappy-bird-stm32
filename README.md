@@ -1,8 +1,8 @@
-# FLAPPY BIRD GAME USING STM32
+# FLAPPY BIRD GAME 
 
 ## Giới thiệu
 
-Đây là project xây dựng game Flappy Bird sử dụng KIT STM32F401RE và màn hình LCD TFT ST7735.
+Đây là project xây dựng game Flappy Bird sử dụng KIT STM32F401RE kết hợp KIT LUMI mở rộng
 
 Game được phát triển bằng ngôn ngữ C trên STM32 SPL SDK.
 
@@ -33,12 +33,7 @@ Game được phát triển bằng ngôn ngữ C trên STM32 SPL SDK.
 
 ---
 
-## Thư viện sử dụng
 
-- STM32 SPL
-- ucglib
-
----
 
 ## Cấu trúc project
 
@@ -79,44 +74,43 @@ Src/
 
 ## Lưu đồ thuật toán
 
-```text
-START
-  |
-INIT SYSTEM
-  |
-INIT LCD
-  |
-INIT GAME
-  |
-SHOW MENU
-  |
-SELECT LEVEL
-  |
-START GAME
-  |
-READ BUTTON
-  |
-UPDATE BIRD
-  |
-UPDATE PIPE
-  |
-CHECK COLLISION
-  |
-+----NO----+
-|          |
-|       DRAW GAME
-|          |
-+<---------+
-|
-YES
-|
-GAME OVER
-|
-LED BLINK
-|
-RESTART
-```
+```mermaid
+flowchart TD
 
+A[START] --> B[INIT SYSTEM]
+
+B --> C[INIT LCD]
+
+C --> D[INIT GAME]
+
+D --> E[SHOW MENU]
+
+E --> F[SELECT LEVEL]
+
+F --> G[START GAME]
+
+G --> H[READ BUTTON]
+
+H --> I[BIRD JUMP]
+
+I --> J[UPDATE PIPE]
+
+J --> K[CHECK COLLISION]
+
+K -->|NO| L[DRAW GAME]
+
+L --> H
+
+K -->|YES| M[GAME OVER]
+
+M --> N[LED BLINK]
+
+N --> O[SHOW SCORE]
+
+O --> P[RESTART]
+
+P --> G
+```
 ---
 
 ## Điều khiển
@@ -141,41 +135,53 @@ RESTART
 ## Hướng dẫn build project
 
 ### Bước 1
-Clone project:
+Clone project và thư viện SDK
 
 ```bash
-git clone <your-github-link>
+git clone https://github.com/HD-Nam/ThuVien_SDK_1.0.3_NUCLEO-F401RE.git
+git clone https://github.com/quangms26/flappy-bird-stm32
 ```
 
 ### Bước 2
 Mở bằng STM32CubeIDE.
 
 ### Bước 3
-Build project.
+Cấu hình đường dẫn Include trong Project Properties > C/C++ Build > Settings > MCU GCC Compiler > Include paths:
+
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Drivers/CMSIS/Include
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Drivers/STM32F401RE_StdPeriph_Driver/inc
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/button
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/buzzer
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/led
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/sensor
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/serial
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/ucglib
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/flash
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/rtos
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Utilities
 
 ### Bước 4
-Nạp chương trình vào KIT STM32.
+Cấu hình đường dẫn thư viện trong MCU GCC Linker > Library search paths:
+
+ThuVien_SDK_1.0.3_NUCLEO-F401RE/lib_stm
+
+### Bước 5
+Build bằng Ctrl+B
+
+### Bước 6 
+Nạp chương trình qua Run > Debug
 
 ---
 
-## Demo game
-
-Thêm ảnh game tại đây:
-
-```markdown
-![demo](images/demo.jpg)
-```
-
----
 
 ## Kết quả đạt được
 
 - Game hoạt động ổn định trên STM32
 - LCD hiển thị mượt
 - Điều khiển thời gian thực
-- Hoàn thành đầy đủ yêu cầu đề bài
+
 
 ---
 
 ## Tác giả
-Nguyễn Văn Quang + Nguyễn Thành Nam
+Nguyễn Văn Quang + Đỗ Thành Nam

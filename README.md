@@ -147,7 +147,7 @@ Mở bằng STM32CubeIDE.
 
 ### Bước 3
 Cấu hình đường dẫn Include trong Project Properties > C/C++ Build > Settings > MCU GCC Compiler > Include paths:
-
+```bash
 ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Drivers/CMSIS/Include
 ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Drivers/STM32F401RE_StdPeriph_Driver/inc
 ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/button
@@ -159,7 +159,7 @@ ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/ucglib
 ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/flash
 ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Middle/rtos
 ThuVien_SDK_1.0.3_NUCLEO-F401RE/shared/Utilities
-
+```
 ### Bước 4
 Cấu hình đường dẫn thư viện trong MCU GCC Linker > Library search paths:
 
